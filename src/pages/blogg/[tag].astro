@@ -36,13 +36,13 @@ const { posts, uniqueTags } = Astro.props;
             ))}
     </div>
 
-    <div class="">
+    <div class="grayscale hover:grayscale-0">
 
         {posts?.slice().sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)).map((story, index) => (
             <a href={story.url} class="articleItem me-2 hover:opacity-80" key={index}>
                 <img class="articleImg my-0 h-64 w-full object-cover" src={story.frontmatter.image.url} alt={story.frontmatter.image.alt} />
                 <div class="articleItemInfo">
-                    <h2 class="pt-2 text-dark">{story.frontmatter.title}</h2>
+                    <h2 class="pt-2 text-dark hover:text-pop">{story.frontmatter.title}</h2>
                     <p class="articleDescription">{story.frontmatter.pubDate.slice(0, 10)}</p>
                     <p class="articleDescription">{story.frontmatter.description}</p>
                     {/* <p class="articleAuthor">Written by: {story.frontmatter.pubDate}</p> */}
