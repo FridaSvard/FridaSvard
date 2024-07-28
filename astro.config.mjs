@@ -22,5 +22,8 @@ export default defineConfig({
         usePolling: true
       }
     }
-  }
+  },
+  css: {
+    include: ['./src/style/global.css'],
+  },
 });
