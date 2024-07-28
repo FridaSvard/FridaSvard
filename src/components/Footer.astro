@@ -1,0 +1,35 @@
+---
+import njordLogo from "/src/assets/logo/NJORDSTUDIO_logo_white.svg";
+import Social from './Social.astro';
+---
+
+        <footer class="bg-green mt-5">
+            <!--
+            <a href="/"><img class="footerLogo" src={njordLogo.src} alt="Logo" style="width: 300px; height: auto;" /></a>-->
+
+            <p class="text-4xl font-bold text-center pt-8 pb-2 text-white">Frida Svärd</p>
+
+            <div class="footerContainer">
+
+                <div class="text-center pt-4">
+                    <!-- <h3>Kontakta mig:</h3> -->
+                    <a href="mailto:fsvardh@gmail.com?subject=Hej!"><span class="text-white hover:text-pop">E-mail (fsvardh@gmail.com)</span></a>
+                    <br />
+                    <Social platform="Instagram" username="fsvardh" />
+                    </div>
+
+            </div>
+
+            <div class="flex justify-center text-xs mt-4 py-4">
+                <a href="http://njordstudio.com/"><p class="text-mid">© 2024 Njord Studio AB. All Rights Reserved.</p></a>
+            </div>
+        </footer>
+
+
+        <script>
+            import "../scripts/menu.js";
+        </script>
+
+    </body>
+
+</html>

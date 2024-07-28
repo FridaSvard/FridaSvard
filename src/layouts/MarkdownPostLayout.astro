@@ -1,0 +1,60 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+const { frontmatter, url } = Astro.props;
+
+// Fetch all posts
+const allPosts = await Astro.glob('../pages/posts/*.mdx');
+
+// Sort posts by publication date
+allPosts.sort((a, b) => new Date(a.frontmatter.pubDate) - new Date(b.frontmatter.pubDate));
+
+// Find the current post index
+const currentIndex = allPosts.findIndex(post => post.url === url);
+
+// Determine the previous and next posts
+const previousPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+const nextPost = currentIndex >= 0 && currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+
+// console.log("post", frontmatter);
+---
+
+<BaseLayout frontmatter={frontmatter}>
+
+    <article class="stories">
+
+        <div class="py-4">
+            <!-- <p class="storyAuthor">Written by: {frontmatter.author}</p> -->
+            <p class="text-sm text-green">Publicerad: {frontmatter.pubDate.toString().slice(0,10)}</p>
+            <!-- todo: add tags -->
+            <div>
+                <p class="text-sm text-green">
+                    Taggar:
+                        {frontmatter.tags.map((tag, index) => {
+                            return (
+                                <>
+                                    <span class="tag">{tag}</span>
+                                    {index !== frontmatter.tags.length - 1 && ", "}
+                                </>
+                            );
+                        })}
+                </p>
+            </div>
+        </div>
+
+        <div class="content">
+            <slot />
+        </div>
+
+        <div class="navigation-links mt-8 flex w-full">
+            {previousPost && (
+                <a href={previousPost.url} class="mr-auto">← Nyare inlägg: {previousPost.frontmatter.title}</a>
+            )}
+            {nextPost && (
+                <a href={nextPost.url} class="ml-auto">Äldre inlägg: {nextPost.frontmatter.title} →</a>
+            )}
+        </div>
+
+    </article>
+
+</BaseLayout>

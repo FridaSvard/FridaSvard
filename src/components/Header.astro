@@ -1,0 +1,60 @@
+---
+import Navigation from '../components/Navigation.astro';
+import Hamburger from './Hamburger.astro';
+import globalCss from "/src/style/global.css";
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+
+        <!-- Google Analytics through Partytown -->
+        <!-- <script
+        type="text/partytown"
+        src="https://www.googletagmanager.com/gtag/js?id=G-K4R0YCB5C8">
+        </script>
+        <script type="text/partytown">
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+        dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+        gtag("config", "G-K4R0YCB5C8");
+        </script> -->
+
+        <!-- Favicons -->
+        <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#000000"> -->
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="generator" content={Astro.generator} />
+        <meta name="description" content="Freelance CG Artist & Web Developer.">
+        <meta name="copyright"content="Frida Svärd Blogg">
+        <!-- <meta name="keywords" content="CG Artist, CGI, 3D, Web Developer"/> -->
+        <title>Frida Svärd</title>
+
+        <link rel="stylesheet" href={globalCss}>
+
+        <!-- SoMe -->
+        <meta property="og:title" content="Frida Svärd" />
+        <!-- <meta property="og:description" content="Freelance CG Artist & Web Developer." /> -->
+        <meta property="og:type" content="website" />
+
+        <!-- Google Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+	</head>
+
+    <body>
+        <header class="h-20 mb-4">
+            <p class="absolute md:hidden top-5 left-10 font-bold text-xl md:hidden">Frida Svärd</p>
+            <Navigation />
+            <Hamburger />
+        </header>

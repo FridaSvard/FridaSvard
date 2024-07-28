@@ -1,0 +1,48 @@
+/* src/styles/global.css */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        @apply font-sans font-normal bg-white;
+    }
+
+    a {
+        @apply text-green;
+    }
+
+    a:hover {
+        @apply text-pop;
+    }
+
+    h1 {
+        @apply text-3xl font-bold py-1;
+    }
+
+    h2 {
+        @apply text-2xl font-semibold py-0.5;
+    }
+
+    h3 {
+        @apply text-lg font-bold py-0.5;
+    }
+
+    p {
+        @apply text-dark;
+    }
+
+    img {
+        @apply w-full;
+    }
+
+    figure {
+        @apply w-full my-6;
+    }
+
+    figcaption {
+        @apply text-center text-sm text-green;
+    }
+}

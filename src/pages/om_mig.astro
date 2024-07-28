@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import myImage from '../../src/images/Frida.jpg';
+
+const title = "Om mig";
+---
+
+<BaseLayout title={title}>
+
+        <figure data-lightbox="true">
+            <Image
+            src={myImage}
+            alt="Fredrik snow shoe walking"
+            width={myImage.width / 2}
+            densities={[1.5, 2]}
+            />
+            <figcaption>Foto - Fredrik Svärd.</figcaption>
+        </figure>
+
+    <p>Frida, en lagom snurrig nyinflyttad Åre-bo med familj och hund som vill kunna minnas och se tillbaka på det här äventyret när hon är gammal och grå. En bokälskare som pluggar litteratur och med förhoppning om att öka på sin något tvivelaktiga kondition genom många äventyr och turer på fjällen.</p>
+
+</BaseLayout>
