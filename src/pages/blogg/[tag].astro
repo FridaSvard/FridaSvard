@@ -1,57 +1,65 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro'
-// import BlogPost from '../../../src/components/BlogPost.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
+// Fetch all posts
 export async function getStaticPaths() {
   const allPosts = await Astro.glob('../posts/*.mdx');
 
+  // Extract unique tags
   const uniqueTags = [...new Set(allPosts.map((post) => post.frontmatter.tags).flat())];
 
+  // Return paths and associated posts
   return uniqueTags.map((tag) => {
     const filteredPosts = allPosts.filter((post) => post.frontmatter.tags.includes(tag));
 
     return {
       params: { tag },
       props: {
-          posts: filteredPosts,
-          uniqueTags: uniqueTags,
-       },
+        posts: filteredPosts,
+        uniqueTags: uniqueTags,
+      },
     };
   });
 }
 
 const { tag } = Astro.params;
 const { posts, uniqueTags } = Astro.props;
+
+// Sort posts by date in descending order
+const sortedPosts = posts?.slice().sort((a, b) => {
+  const dateA = new Date(a.frontmatter.pubDate);
+  const dateB = new Date(b.frontmatter.pubDate);
+
+  // Log dates for debugging
+//   console.log("Date A:", dateA);
+//   console.log("Date B:", dateB);
+
+  // Sort in descending order
+  return dateB - dateA;
+});
 ---
 
 <BaseLayout title={tag ?? 'Blogg'}>
+  <div class="my-4">
+    Taggar:
+    <a href="/" class="tagItem"><span class="underline decoration-solid pr-1">Allt</span></a>
+    {uniqueTags?.map((tag) => (
+      <a href={`/blogg/${tag}`} class="tagItem">
+        <span class="underline decoration-solid mr-2">{tag}</span>
+      </a>
+    ))}
+  </div>
 
-
-    <div class="my-4">
-        Taggar:
-        <a href="/" class="tagItem"><span class="underline decoration-solid pr-1">Allt</span></a>
-
-            {uniqueTags?.map((tag) => (
-                <a href={`/blogg/${tag}`} class="tagItem"><span class="underline decoration-solid mr-2">{tag}</span></a>
-            ))}
-    </div>
-
-    <div class="grayscale hover:grayscale-0">
-
-        {posts?.slice().sort((a, b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date)).map((story, index) => (
-            <a href={story.url} class="articleItem me-2 hover:opacity-80" key={index}>
-                <img class="articleImg my-0 h-64 w-full object-cover" src={story.frontmatter.image.url} alt={story.frontmatter.image.alt} />
-                <div class="articleItemInfo">
-                    <h2 class="pt-2 text-dark hover:text-pop">{story.frontmatter.title}</h2>
-                    <p class="articleDescription">{story.frontmatter.pubDate.slice(0, 10)}</p>
-                    <p class="articleDescription">{story.frontmatter.description}</p>
-                    {/* <p class="articleAuthor">Written by: {story.frontmatter.pubDate}</p> */}
-                </div>
-            </a>
-        ))}
-
+  <div class="grayscale hover:grayscale-0">
+    {sortedPosts?.map((story, index) => (
+      <a href={story.url} class="articleItem me-2 hover:opacity-80" key={index}>
+        <img class="articleImg my-0 h-64 w-full object-cover" src={story.frontmatter.image.url} alt={story.frontmatter.image.alt} />
+        <div class="articleItemInfo">
+          <h2 class="pt-2 text-dark hover:text-pop">{story.frontmatter.title}</h2>
+          <p class="text-sm text-green">{story.frontmatter.pubDate.slice(0, 10)}</p>
+          <p class="">{story.frontmatter.description}</p>
         </div>
-
-        <!-- TODO: Read Next by date, not tag.  -->
-
+      </a>
+    ))}
+  </div>
 </BaseLayout>

@@ -46,12 +46,12 @@ const nextPost = currentIndex >= 0 && currentIndex < allPosts.length - 1 ? allPo
             <slot />
         </div>
 
-        <div class="navigation-links mt-8 flex w-full">
+        <div class="navigation-links mt-12 flex w-full gap-2">
             {previousPost && (
-                <a href={previousPost.url} class="mr-auto">← Nyare inlägg: {previousPost.frontmatter.title}</a>
+                <a href={previousPost.url} class="mr-auto text-sm">← Äldre inlägg:<br /> {previousPost.frontmatter.title}</a>
             )}
             {nextPost && (
-                <a href={nextPost.url} class="ml-auto">Äldre inlägg: {nextPost.frontmatter.title} →</a>
+                <a href={nextPost.url} class="ml-auto text-sm">Nyare inlägg: →<br /> {nextPost.frontmatter.title}</a>
             )}
         </div>
 
