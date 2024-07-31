@@ -43,6 +43,6 @@
     }
 
     figcaption {
-        @apply text-center text-sm text-green;
+        @apply text-center text-sm text-green pt-1;
     }
 }
